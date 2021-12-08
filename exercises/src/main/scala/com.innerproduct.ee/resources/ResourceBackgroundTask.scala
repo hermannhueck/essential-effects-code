@@ -15,7 +15,8 @@ object ResourceBackgroundTask extends IOApp {
     } yield ExitCode.Success
 
   val backgroundTask: Resource[IO, Unit] = {
-    val loop = (IO("looping...").debug() *> IO.sleep(100.millis)).foreverM // <2>
+    val loop =
+      (IO("looping...").debug() *> IO.sleep(100.millis)).foreverM // <2>
 
     Resource
       .make(IO("> forking backgroundTask").debug() *> loop.start)( // <3>
