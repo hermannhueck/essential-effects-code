@@ -10,8 +10,8 @@ object Timeout extends IOApp {
     for {
       done <- IO.race(task, timeout) // <1>
       _ <- done match { // <2>
-        case Left(_)  => IO("   task: won").debug // <3>
-        case Right(_) => IO("timeout: won").debug // <4>
+        case Left(_)  => IO("   task: won").debug() // <3>
+        case Right(_) => IO("timeout: won").debug() // <4>
       }
     } yield ExitCode.Success
 
@@ -20,8 +20,8 @@ object Timeout extends IOApp {
 
   def annotatedSleep(name: String, duration: FiniteDuration): IO[Unit] =
     (
-      IO(s"$name: starting").debug *>
+      IO(s"$name: starting").debug() *>
         IO.sleep(duration) *> // <5>
-        IO(s"$name: done").debug
-    ).onCancel(IO(s"$name: cancelled").debug.void).void
+        IO(s"$name: done").debug()
+    ).onCancel(IO(s"$name: cancelled").debug().void).void
 }

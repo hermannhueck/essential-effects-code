@@ -46,14 +46,14 @@ object LatchExample extends IOApp {
 
   def runPrerequisite(latch: CountdownLatch) =
     for {
-      result <- IO("prerequisite").debug
+      result <- IO("prerequisite").debug()
       _ <- latch.decrement // <1>
     } yield result
 
   def actionWithPrerequisites(latch: CountdownLatch) =
     for {
-      _ <- IO("waiting for prerequisites").debug
+      _ <- IO("waiting for prerequisites").debug()
       _ <- latch.await // <1>
-      result <- IO("action").debug // <2>
+      result <- IO("action").debug() // <2>
     } yield result
 }

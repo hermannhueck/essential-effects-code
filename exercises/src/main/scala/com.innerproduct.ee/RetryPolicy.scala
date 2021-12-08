@@ -5,6 +5,7 @@ import cats.syntax.all._
 import com.innerproduct.ee.debug._
 import scala.concurrent.duration._
 
+// FORMAT: OFF
 /** Specify effect retry policies as an algebra, run them with an interpreter.
   *
   * Totally stolen from https://cb372.github.io/cats-retry.
@@ -24,6 +25,8 @@ import scala.concurrent.duration._
   * 2. Reify all the introduction and composition forms, usually as an algebraic data type.
   * 3. Implement the interpreter in the elimination forms, usually as a structural recursion over the ADT.
   */
+// FORMAT: ON
+
 sealed trait RetryPolicy {
   // import RetryPolicy._ // bring ADT types into scope
 
@@ -111,7 +114,7 @@ object RetryPolicy {
 object RetryApp extends IOApp {
   def run(args: List[String]): IO[ExitCode] =
     policy
-      .retry(ohNoes.debug)
+      .retry(ohNoes.debug())
       .as(ExitCode.Success)
 
   val retryFourTimes = RetryPolicy.limitRetries(4)

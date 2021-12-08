@@ -10,8 +10,8 @@ object Blocking extends IOApp {
 
   def withBlocker(blocker: Blocker): IO[Unit] =
     for {
-      _ <- IO("on default").debug
-      _ <- IO("on blocker").debug // <2>
-      _ <- IO("where am I?").debug // <3>
+      _ <- IO("on default").debug()
+      _ <- IO("on blocker").debug() // <2>
+      _ <- IO("where am I?").debug() // <3>
     } yield ()
 }

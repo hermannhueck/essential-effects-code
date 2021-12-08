@@ -7,9 +7,9 @@ import scala.concurrent.ExecutionContext
 object AsyncThread extends IOApp {
   def run(args: List[String]): IO[ExitCode] =
     for {
-      _ <- IO("on default context").debug
-      _ <- effect.debug
-      _ <- IO("where am I?").debug
+      _ <- IO("on default context").debug()
+      _ <- effect.debug()
+      _ <- IO("where am I?").debug()
     } yield ExitCode.Success
 
   val effect: IO[String] =
