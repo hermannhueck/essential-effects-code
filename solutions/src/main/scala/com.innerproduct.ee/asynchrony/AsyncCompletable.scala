@@ -18,11 +18,14 @@ object AsyncCompletable extends IOApp {
         val handler: (A, Throwable) => Unit = {
           case (a, null) => cb(Right(a))
           case (null, t) => cb(Left(t))
-          case (a, t) => sys.error(s"CompletableFuture handler should always have one null, got: $a, $t")
+          case (a, t) =>
+            sys.error(
+              s"CompletableFuture handler should always have one null, got: $a, $t"
+            )
         }
 
         fa.handle[Unit](handler.asJavaBiFunction)
-        
+
         ()
       }
     }

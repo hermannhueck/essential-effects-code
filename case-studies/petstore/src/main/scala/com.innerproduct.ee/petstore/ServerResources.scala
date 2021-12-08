@@ -18,7 +18,8 @@ object ServerResources {
           pets.find(_._2 == pet) match {
             case None =>
               val id = Pet.Id(
-                (if (pets.isEmpty) 0 else pets.keySet.maxBy(_.toLong).toLong) + 1
+                (if (pets.isEmpty) 0
+                 else pets.keySet.maxBy(_.toLong).toLong) + 1
               )
               (pets + (id -> pet), id)
             case Some(id -> _) => (pets, id)
@@ -87,7 +88,8 @@ object ServerResources {
           // TODO: assumes all given orders are unique
           val id =
             PetOrder.Id(
-              (if (orders.isEmpty) 0 else orders.keySet.maxBy(_.toLong).toLong) + 1
+              (if (orders.isEmpty) 0
+               else orders.keySet.maxBy(_.toLong).toLong) + 1
             )
           (orders + (id -> order), id)
         }

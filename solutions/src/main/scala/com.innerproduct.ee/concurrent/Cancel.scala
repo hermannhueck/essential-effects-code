@@ -8,7 +8,7 @@ object Cancel extends IOApp {
 
   def run(args: List[String]): IO[ExitCode] =
     for {
-      fiber <- 
+      fiber <-
         task
           .onCancel(IO("i was cancelled").debug().void) // <1>
           .start

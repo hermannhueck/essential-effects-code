@@ -9,7 +9,6 @@ import org.http4s._
 import org.http4s.circe._
 import java.time.Instant
 
-
 case class PetOrder(
     petId: Pet.Id,
     shipDate: Option[Instant],
@@ -48,7 +47,8 @@ object PetOrder {
           Status.Approved.asRight[PetOrder.Error]
         case (Status.Approved, Status.Delivered) =>
           Status.Delivered.asRight[PetOrder.Error]
-        case _ => PetOrder.Error.IllegalStatusTransition(this, that).asLeft[Status]
+        case _ =>
+          PetOrder.Error.IllegalStatusTransition(this, that).asLeft[Status]
       }
   }
 

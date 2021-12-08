@@ -14,7 +14,7 @@ import scala.concurrent.duration._
 import scala.concurrent.ExecutionContext
 
 object Server extends IOApp {
-  
+
   def run(args: List[String]) =
     runR[IO].use(_ => IO.never)
 
@@ -39,7 +39,9 @@ object Server extends IOApp {
         .pets[F]
         .map(addExtraLatency(100.millis))
       orderRepo <- ServerResources.orderRepo[F]
-      orders = addExtraLatency(100.millis)(ServerResources.orders(pets, orderRepo))
+      orders = addExtraLatency(100.millis)(
+        ServerResources.orders(pets, orderRepo)
+      )
     } yield Routes.pets[F](pets) <+> Routes.orders[F](orders)
 
   def addExtraLatency[Alg[_[_]]: FunctorK, F[_]: Monad: Timer](

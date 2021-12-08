@@ -17,7 +17,7 @@ trait PetService[F[_]] { self =>
 // workaround for https://github.com/typelevel/cats-tagless/issues/125
 object PetService
 
-/** Pet adoption order service .*/
+/** Pet adoption order service . */
 @autoFunctorK
 @autoInstrument
 trait OrderService[F[_]] {

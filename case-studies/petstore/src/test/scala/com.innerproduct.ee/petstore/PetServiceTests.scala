@@ -50,7 +50,8 @@ object PetServiceLaws {
 }
 
 /** "Laws" in cats are usually expressed with the [[cats.laws.IsEq]] class,
-  * which can be written with the infix operator `<->` to mean "these two things are equal".
+  * which can be written with the infix operator `<->` to mean "these two things
+  * are equal".
   *
   * This mixin lets you use `<->` to equate two `IO` values.
   */

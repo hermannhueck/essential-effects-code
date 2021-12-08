@@ -36,7 +36,8 @@ object Routes {
     object PetIdQueryParamMatcher
         extends QueryParamDecoderMatcher[Pet.Id]("petId")
 
-    implicit val orderStatusQueryParamDecoder: QueryParamDecoder[PetOrder.Status] =
+    implicit val orderStatusQueryParamDecoder
+        : QueryParamDecoder[PetOrder.Status] =
       QueryParamDecoder[String].map {
         case "placed"    => PetOrder.Status.Placed
         case "approved"  => PetOrder.Status.Approved
@@ -80,7 +81,7 @@ object Routes {
             .leftMap {
               case PetOrder.Error.OrderNotFound(_)              => NotFound()
               case PetOrder.Error.IllegalStatusTransition(_, _) => BadRequest()
-              case PetOrder.Error.PetNotFound(_)                => InternalServerError()
+              case PetOrder.Error.PetNotFound(_) => InternalServerError()
             }
             .map(Ok(_))
             .merge
@@ -92,7 +93,7 @@ object Routes {
             .leftMap {
               case PetOrder.Error.OrderNotFound(_)              => NotFound()
               case PetOrder.Error.IllegalStatusTransition(_, _) => BadRequest()
-              case PetOrder.Error.PetNotFound(_)                => InternalServerError()
+              case PetOrder.Error.PetNotFound(_) => InternalServerError()
             }
             .map(Ok(_))
             .merge

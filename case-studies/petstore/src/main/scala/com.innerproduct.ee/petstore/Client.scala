@@ -21,5 +21,5 @@ object Client extends IOApp {
   def pets[F[_]: ConcurrentEffect]: Resource[F, PetService[F]] =
     for {
       client <- BlazeClientBuilder(ExecutionContext.global).resource
-    } yield ClientResources.pets(client, Uri.uri("http://localhost:8080"))    
+    } yield ClientResources.pets(client, Uri.uri("http://localhost:8080"))
 }

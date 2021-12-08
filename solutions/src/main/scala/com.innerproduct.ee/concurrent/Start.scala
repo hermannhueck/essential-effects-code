@@ -4,7 +4,7 @@ import cats.effect._
 import com.innerproduct.ee.debug._
 
 object Start extends IOApp {
-  
+
   def run(args: List[String]): IO[ExitCode] =
     for {
       _ <- task.start // <1>
