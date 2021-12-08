@@ -36,19 +36,19 @@ object ClientResources {
         }
 
       def applyForAdoption(id: Pet.Id): F[Either[PetOrder.Error, PetOrder.Id]] =
-        client.fetch(Request[F](Method.POST, baseURI / "orders" +? id)) {
+        client.run(Request[F](Method.POST, baseURI / "orders" +? id)).use {
           case Successful(res) =>
             res.as[PetOrder.Id].map(_.asRight[PetOrder.Error])
           case res => res.as[PetOrder.Error].map(_.asLeft[PetOrder.Id])
         }
       def approve(id: PetOrder.Id): F[Either[PetOrder.Error, Unit]] =
         EitherT(
-          client.fetch(
+          client.run(
             Request[F](
               Method.POST,
               baseURI / "orders" / id.toLong.toString / "approved"
             )
-          ) {
+          ).use {
             case Successful(res) => res.as[Unit].map(_.asRight[PetOrder.Error])
             case res             => res.as[PetOrder.Error].map(_.asLeft[Unit])
           }

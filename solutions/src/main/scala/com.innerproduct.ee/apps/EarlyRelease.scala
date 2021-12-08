@@ -19,7 +19,7 @@ object EarlyRelease extends IOApp {
     } yield conn
 
   lazy val configResource: Resource[IO, Config] = // <1>
-    Resource.liftF(sourceResource.use(Config.fromSource))
+    Resource.eval(sourceResource.use(Config.fromSource))
 
   lazy val sourceResource: Resource[IO, Source] =
     Resource.make(

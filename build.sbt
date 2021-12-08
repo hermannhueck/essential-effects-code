@@ -6,12 +6,12 @@ ThisBuild / turbo := true                  // default: false
 ThisBuild / includePluginResolvers := true // default: false
 Global / onChangedBuildSource := ReloadOnSourceChanges
 
-val CatsEffectVersion = "2.1.3"
-val CatsTaglessVersion = "0.11"
-val CirceVersion = "0.13.0"
-val Http4sVersion = "0.21.4"
-val LogbackVersion = "1.2.3"
-val MunitVersion = "0.7.8"
+val CatsEffectVersion = "2.5.4"
+val CatsTaglessVersion = "0.14.0"
+val CirceVersion = "0.14.1"
+val Http4sVersion = "0.21.31"
+val LogbackVersion = "1.2.7"
+val MunitVersion = "0.7.29"
 
 val commonSettings =
   Seq(

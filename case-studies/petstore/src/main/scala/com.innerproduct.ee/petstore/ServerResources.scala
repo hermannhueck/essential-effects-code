@@ -9,7 +9,7 @@ object ServerResources {
 
   def pets[F[_]: Sync]: Resource[F, PetService[F]] =
     for {
-      pets <- Resource.liftF(Ref[F].of(Map.empty[Pet.Id, Pet]))
+      pets <- Resource.eval(Ref[F].of(Map.empty[Pet.Id, Pet]))
     } yield new PetService[F] {
       def find(id: Pet.Id): F[Option[Pet]] =
         pets.get.map(_.get(id))
@@ -81,7 +81,7 @@ object ServerResources {
 
   def orderRepo[F[_]: Sync]: Resource[F, OrderRepository[F]] =
     for {
-      orders <- Resource.liftF(Ref.of[F, Map[PetOrder.Id, PetOrder]](Map.empty))
+      orders <- Resource.eval(Ref.of[F, Map[PetOrder.Id, PetOrder]](Map.empty))
     } yield new OrderRepository[F] {
       def create(order: PetOrder): F[PetOrder.Id] =
         orders.modify { orders =>
