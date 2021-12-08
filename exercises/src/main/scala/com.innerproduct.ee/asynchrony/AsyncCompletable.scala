@@ -12,6 +12,7 @@ object AsyncCompletable extends IOApp {
   val effect: IO[String] =
     fromCF(IO(cf()))
 
+  @annotation.nowarn("msg=never used")
   def fromCF[A](cfa: IO[CompletableFuture[A]]): IO[A] =
     cfa.flatMap { fa =>
       IO.async { cb =>

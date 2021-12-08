@@ -8,6 +8,7 @@ object Blocking extends IOApp {
   def run(args: List[String]): IO[ExitCode] =
     withBlocker(???).as(ExitCode.Success) // <1>
 
+  @annotation.nowarn("msg=never used")
   def withBlocker(blocker: Blocker): IO[Unit] =
     for {
       _ <- IO("on default").debug()

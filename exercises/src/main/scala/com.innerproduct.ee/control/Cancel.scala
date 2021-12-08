@@ -5,6 +5,7 @@ import com.innerproduct.ee.debug._
 
 object Cancel extends IOApp {
 
+  @annotation.nowarn("msg=never used")
   def run(args: List[String]): IO[ExitCode] =
     for {
       fiber <- task.start // <2>

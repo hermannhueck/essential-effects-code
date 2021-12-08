@@ -12,6 +12,7 @@ object ResourceApp extends IOApp {
       }
       .as(ExitCode.Success)
 
+  @annotation.nowarn("msg=Reference to uninitialized value")
   val resources: Resource[IO, (DependencyA, DependencyB, DependencyC)] = // <1>
     (resourceA, resourceB, resourceC).tupled
 

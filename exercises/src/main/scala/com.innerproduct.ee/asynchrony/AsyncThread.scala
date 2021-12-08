@@ -12,6 +12,7 @@ object AsyncThread extends IOApp {
       _ <- IO("where am I?").debug()
     } yield ExitCode.Success
 
+  @annotation.nowarn("msg=never used")
   val effect: IO[String] =
     IO.async { cb =>
       ExecutionContext.global.execute {
