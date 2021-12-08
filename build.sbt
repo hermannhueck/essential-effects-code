@@ -22,7 +22,7 @@ val commonSettings =
     testFrameworks += new TestFramework("munit.Framework")
   )
 
-lazy val exercises = (project in file("exercises"))
+lazy val solutions = (project in file("solutions"))
   .settings(commonSettings)
   .settings(
     scalacOptions += "-Wunused:nowarn",
@@ -33,7 +33,7 @@ lazy val exercises = (project in file("exercises"))
   )
 
 lazy val petstore = (project in file("case-studies") / "petstore")
-  .dependsOn(exercises % "test->test;compile->compile")
+  .dependsOn(solutions % "test->test;compile->compile")
   .settings(commonSettings)
   .settings(
     // -Ymacro-annotations in 2.13.2 breaks -Wunused-imports, so downgrade for petstore (https://github.com/scala/bug/issues/11978)
