@@ -22,7 +22,6 @@ val commonSettings =
       "org.scalameta" %% "munit" % MunitVersion % Test
     ),
     // scalacOptions provided by sbt-tpolecat plugin
-    testFrameworks += new TestFramework("munit.Framework")
   )
 
 lazy val solutions = (project in file("solutions"))
