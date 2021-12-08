@@ -2,6 +2,9 @@ ThisBuild / scalaVersion := "2.13.2"
 ThisBuild / organization := "com.innerproduct"
 ThisBuild / version := "0.0.1-SNAPSHOT"
 ThisBuild / fork := true
+ThisBuild / turbo := true                  // default: false
+ThisBuild / includePluginResolvers := true // default: false
+Global / onChangedBuildSource := ReloadOnSourceChanges
 
 val CatsEffectVersion = "2.1.3"
 val CatsTaglessVersion = "0.11"
