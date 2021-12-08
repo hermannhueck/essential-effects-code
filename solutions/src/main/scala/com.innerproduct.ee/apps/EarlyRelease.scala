@@ -35,7 +35,7 @@ case class Config(connectURL: String)
 object Config {
   def fromSource(source: Source): IO[Config] =
     for {
-      config <- IO(Config(source.getLines().next))
+      config <- IO(Config(source.getLines().next()))
       _ <- IO(s"read $config").debug()
     } yield config
 }

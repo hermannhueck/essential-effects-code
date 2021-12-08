@@ -12,7 +12,7 @@ object debug {
     def debug(): IO[A] =
       for {
         a <- ioa
-        tn <- ThreadName.current
+        tn <- ThreadName.current()
         _ = println(s"[$tn] $a")
       } yield a
   }

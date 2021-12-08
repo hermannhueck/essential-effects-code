@@ -1,4 +1,4 @@
-ThisBuild / scalaVersion := "2.13.2"
+ThisBuild / scalaVersion := "2.13.7"
 ThisBuild / organization := "com.innerproduct"
 ThisBuild / version := "0.0.1-SNAPSHOT"
 ThisBuild / fork := true
@@ -16,7 +16,7 @@ val MunitVersion = "0.7.8"
 val commonSettings =
   Seq(
     addCompilerPlugin(
-      "org.typelevel" %% "kind-projector" % "0.11.0" cross CrossVersion.full
+      "org.typelevel" %% "kind-projector" % "0.13.2" cross CrossVersion.full
     ),
     libraryDependencies ++= Seq(
       "org.scalameta" %% "munit" % MunitVersion % Test
@@ -40,7 +40,7 @@ lazy val petstore = (project in file("case-studies") / "petstore")
   .settings(commonSettings)
   .settings(
     // -Ymacro-annotations in 2.13.2 breaks -Wunused-imports, so downgrade for petstore (https://github.com/scala/bug/issues/11978)
-    scalaVersion := "2.13.1",
+    scalaVersion := "2.13.7",
     scalacOptions += "-Ymacro-annotations", // required by cats-tagless-macros
     libraryDependencies ++= Seq(
       "ch.qos.logback" % "logback-classic" % LogbackVersion,
