@@ -27,7 +27,6 @@ val commonSettings =
 lazy val solutions = (project in file("solutions"))
   .settings(commonSettings)
   .settings(
-    scalacOptions += "-Wunused:nowarn",
     libraryDependencies ++= Seq(
       "org.typelevel" %% "cats-effect" % CatsEffectVersion,
       "org.typelevel" %% "cats-effect-laws" % CatsEffectVersion % Test
