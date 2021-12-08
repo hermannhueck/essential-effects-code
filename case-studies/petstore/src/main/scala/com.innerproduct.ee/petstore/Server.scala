@@ -8,7 +8,7 @@ import cats.tagless._
 import cats.tagless.implicits._
 import org.http4s._
 import org.http4s.implicits._
-import org.http4s.server.blaze.BlazeServerBuilder
+import org.http4s.blaze.server.BlazeServerBuilder
 import org.http4s.server.Router
 import scala.concurrent.duration._
 import scala.concurrent.ExecutionContext
@@ -27,7 +27,7 @@ object Server extends IOApp {
 
   def server[F[_]: ConcurrentEffect: Timer](
       app: HttpApp[F]
-  ): Resource[F, org.http4s.server.Server[F]] =
+  ): Resource[F, org.http4s.server.Server] =
     BlazeServerBuilder[F](ExecutionContext.global)
       .bindHttp(8080, "localhost")
       .withHttpApp(app)

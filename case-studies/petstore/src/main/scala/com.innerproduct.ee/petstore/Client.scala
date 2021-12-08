@@ -2,8 +2,8 @@ package com.innerproduct.ee.petstore
 
 import cats.effect._
 import com.innerproduct.ee.debug._
-import org.http4s._
-import org.http4s.client.blaze.BlazeClientBuilder
+import org.http4s.implicits._
+import org.http4s.blaze.client.BlazeClientBuilder
 import scala.concurrent.ExecutionContext
 
 object Client extends IOApp {
@@ -21,5 +21,5 @@ object Client extends IOApp {
   def pets[F[_]: ConcurrentEffect]: Resource[F, PetService[F]] =
     for {
       client <- BlazeClientBuilder(ExecutionContext.global).resource
-    } yield ClientResources.pets(client, Uri.uri("http://localhost:8080"))
+    } yield ClientResources.pets(client, uri"http://localhost:8080")
 }
