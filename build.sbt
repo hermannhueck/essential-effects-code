@@ -24,6 +24,18 @@ val commonSettings =
     // scalacOptions provided by sbt-tpolecat plugin
   )
 
+lazy val exercises = (project in file("exercises"))
+  .settings(commonSettings)
+  .settings(
+    libraryDependencies ++= Seq(
+      "org.typelevel" %% "cats-effect" % CatsEffectVersion,
+      "org.typelevel" %% "cats-effect-laws" % CatsEffectVersion % Test
+    ),
+    // remove fatal warnings since exercises have unused and dead code blocks
+    scalacOptions ++= Seq( "-Wdead-code:false" ),
+    scalacOptions --= Seq( "-Xfatal-warnings" )
+  )
+
 lazy val solutions = (project in file("solutions"))
   .settings(commonSettings)
   .settings(
