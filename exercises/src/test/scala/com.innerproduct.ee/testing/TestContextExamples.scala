@@ -17,15 +17,16 @@ class TestContextExamples extends FunSuite with EffectTesting {
   test("IO.sleep") {
     // tag::sleep[]
     val timeoutError = new TimeoutException
-    val timeout = IO.sleep(10.seconds) *> IO.raiseError[Int](timeoutError) // <1>
+    val timeout =
+      IO.sleep(10.seconds) *> IO.raiseError[Int](timeoutError) // <1>
     val f = timeout.unsafeToFuture() // <2>
 
     // Not yet
-    ctx.tick(5.seconds)         // <3>
+    ctx.tick(5.seconds) // <3>
     assertEquals(f.value, None) // <3>
 
     // Good to go:
-    ctx.tick(5.seconds)                                // <4>
+    ctx.tick(5.seconds) // <4>
     assertEquals(f.value, Some(Failure(timeoutError))) // <4>
     // end::sleep[]
   }

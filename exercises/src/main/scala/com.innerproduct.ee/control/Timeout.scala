@@ -15,13 +15,13 @@ object Timeout extends IOApp {
       }
     } yield ExitCode.Success
 
-  val task: IO[Unit]    = annotatedSleep("   task", 100.millis) // <6>
+  val task: IO[Unit] = annotatedSleep("   task", 100.millis) // <6>
   val timeout: IO[Unit] = annotatedSleep("timeout", 500.millis)
 
   def annotatedSleep(name: String, duration: FiniteDuration): IO[Unit] =
     (
       IO(s"$name: starting").debug *>
-      IO.sleep(duration) *> // <5>
-      IO(s"$name: done").debug
+        IO.sleep(duration) *> // <5>
+        IO(s"$name: done").debug
     ).onCancel(IO(s"$name: cancelled").debug.void).void
 }

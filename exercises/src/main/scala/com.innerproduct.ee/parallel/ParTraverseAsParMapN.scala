@@ -12,8 +12,11 @@ object ParTraverseAsParMapN extends IOApp {
       li4.debug *>
       IO(ExitCode.Success)
 
-  val li1 = (task(1), task(2)).parMapN((a, b) => List(a, b)) // IO[List[Int]] <1>
-  val li2 = (task(1), task(2), task(3)).parMapN((a, b, c) => List(a, b, c)) // IO[List[Int]] <2>
+  val li1 =
+    (task(1), task(2)).parMapN((a, b) => List(a, b)) // IO[List[Int]] <1>
+  val li2 = (task(1), task(2), task(3)).parMapN((a, b, c) =>
+    List(a, b, c)
+  ) // IO[List[Int]] <2>
   val li3 = (task(1), task(2), task(3), task(4)).parMapN((a, b, c, d) =>
     List(a, b, c, d)
   ) // IO[List[Int]] <3>

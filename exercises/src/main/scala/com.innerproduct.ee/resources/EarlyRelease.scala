@@ -26,8 +26,7 @@ object EarlyRelease extends IOApp {
 
   lazy val sourceResource: Resource[IO, Source] =
     Resource.make(
-      IO(s"> opening Source to config")
-        .debug *> IO(Source.fromString(config))
+      IO(s"> opening Source to config").debug *> IO(Source.fromString(config))
     )(source => IO(s"< closing Source to config").debug *> IO(source.close))
 
   val config = "exampleConnectURL"

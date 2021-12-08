@@ -43,15 +43,18 @@ object ClientResources {
         }
       def approve(id: PetOrder.Id): F[Either[PetOrder.Error, Unit]] =
         EitherT(
-          client.run(
-            Request[F](
-              Method.POST,
-              baseURI / "orders" / id.toLong.toString / "approved"
+          client
+            .run(
+              Request[F](
+                Method.POST,
+                baseURI / "orders" / id.toLong.toString / "approved"
+              )
             )
-          ).use {
-            case Successful(res) => res.as[Unit].map(_.asRight[PetOrder.Error])
-            case res             => res.as[PetOrder.Error].map(_.asLeft[Unit])
-          }
+            .use {
+              case Successful(res) =>
+                res.as[Unit].map(_.asRight[PetOrder.Error])
+              case res => res.as[PetOrder.Error].map(_.asLeft[Unit])
+            }
         ).value
       def deliver(id: PetOrder.Id): F[Either[PetOrder.Error, Unit]] = ???
       def find(id: PetOrder.Id): F[Option[PetOrder]] = ???

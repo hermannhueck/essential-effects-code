@@ -15,7 +15,8 @@ import scala.concurrent.duration._
   * 2. combinators: combines elements of our "algebra"; and
   * 3. elimination forms: turns elements of our algebra into some other type (usually by running the program specified in the algebra).
   *
-  * "Reification" means to make something abstract concrete. Concretely in our case it means to turn method calls into data.
+  * "Reification" means to make something abstract concrete. Concretely in our
+  * case it means to turn method calls into data.
   *
   * Steps to implementing a reified interpreter:
   *
@@ -48,22 +49,28 @@ sealed trait RetryPolicy {
 
   /** Apply the retry policy to an effect, returning a new effect.
     *
-    * Retry policies should be applied when the effect fails, i.e.,
-    * via `handleErrorWith` or some variant.
+    * Retry policies should be applied when the effect fails, i.e., via
+    * `handleErrorWith` or some variant.
     *
     * Important implementation considerations:
-    * - Some policies require cumulative information not available in the ADT itself, like
-    *   the total amount of delay so far. How can this information be carried along inside
-    *   the interpreter?
+    *   - Some policies require cumulative information not available in the ADT
+    *     itself, like the total amount of delay so far. How can this
+    *     information be carried along inside the interpreter?
     *
     * Optional functionality:
-    * - You may want to log about the current failure and retry strategy via the `debug` extension method.
-    * - Alternatively, the caller could provide a callback that is given information about the current
-    *   failure and retry strategy, returning an `IO[Unit]`.
+    *   - You may want to log about the current failure and retry strategy via
+    *     the `debug` extension method.
+    *   - Alternatively, the caller could provide a callback that is given
+    *     information about the current failure and retry strategy, returning an
+    *     `IO[Unit]`.
     *
-    * @param io is the effect to apply the retry policy to.
-    * @param cs is a `ContextShift[IO]` you might need in order to run effects in parallel.
-    * @param timer is a `Timer[IO]` you might need in order to create a "sleep" effect.
+    * @param io
+    *   is the effect to apply the retry policy to.
+    * @param cs
+    *   is a `ContextShift[IO]` you might need in order to run effects in
+    *   parallel.
+    * @param timer
+    *   is a `Timer[IO]` you might need in order to create a "sleep" effect.
     */
   def retry[A](
       io: IO[A]

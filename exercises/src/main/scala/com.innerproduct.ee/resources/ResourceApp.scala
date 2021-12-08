@@ -25,7 +25,7 @@ object ResourceApp extends IOApp {
       c: DependencyC
   ): IO[ExitCode] =
     ???
-  }
+}
 
 trait DependencyA
 trait DependencyB
