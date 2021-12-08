@@ -18,6 +18,7 @@ object Server extends IOApp {
   def run(args: List[String]) =
     runR[IO].use(_ => IO.never)
 
+  @annotation.nowarn("msg=never used")
   def runR[F[_]: ConcurrentEffect: ContextShift: Timer]: Resource[F, Unit] =
     for {
       rs <- routes
