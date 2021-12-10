@@ -33,6 +33,16 @@ lazy val util = (project in file("util"))
     )
   )
 
+lazy val examples = (project in file("examples"))
+  .dependsOn(util)
+  .settings(commonSettings)
+  .settings(
+    libraryDependencies ++= Seq(
+      "org.typelevel" %% "cats-effect" % CatsEffectVersion,
+      "org.typelevel" %% "cats-effect-laws" % CatsEffectVersion % Test
+    )
+  )
+
 lazy val exercises = (project in file("exercises"))
   .dependsOn(util)
   .settings(commonSettings)
