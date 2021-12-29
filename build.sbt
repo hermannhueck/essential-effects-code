@@ -45,6 +45,7 @@ lazy val examples = (project in file("examples"))
 
 lazy val exercises = (project in file("exercises"))
   .dependsOn(util)
+  .dependsOn(examples)
   .settings(commonSettings)
   .settings(
     libraryDependencies ++= Seq(
@@ -58,6 +59,7 @@ lazy val exercises = (project in file("exercises"))
 
 lazy val solutions = (project in file("solutions"))
   .dependsOn(util)
+  .dependsOn(examples)
   .settings(commonSettings)
   .settings(
     libraryDependencies ++= Seq(
