@@ -24,17 +24,7 @@ val commonSettings =
     // scalacOptions provided by sbt-tpolecat plugin
   )
 
-lazy val util = (project in file("util"))
-  .settings(commonSettings)
-  .settings(
-    libraryDependencies ++= Seq(
-      "org.typelevel" %% "cats-effect" % CatsEffectVersion,
-      "org.typelevel" %% "cats-effect-laws" % CatsEffectVersion % Test
-    )
-  )
-
 lazy val examples = (project in file("examples"))
-  .dependsOn(util)
   .settings(commonSettings)
   .settings(
     libraryDependencies ++= Seq(
@@ -44,7 +34,6 @@ lazy val examples = (project in file("examples"))
   )
 
 lazy val exercises = (project in file("exercises"))
-  .dependsOn(util)
   .dependsOn(examples)
   .settings(commonSettings)
   .settings(
@@ -58,7 +47,6 @@ lazy val exercises = (project in file("exercises"))
   )
 
 lazy val solutions = (project in file("solutions"))
-  .dependsOn(util)
   .dependsOn(examples)
   .settings(commonSettings)
   .settings(
@@ -69,7 +57,7 @@ lazy val solutions = (project in file("solutions"))
   )
 
 lazy val petstore = (project in file("case-studies") / "petstore")
-  .dependsOn(util % "test->test;compile->compile")
+  .dependsOn(examples % "test->test;compile->compile")
   .settings(commonSettings)
   .settings(
     // -Ymacro-annotations in 2.13.2 breaks -Wunused-imports, so downgrade for petstore (https://github.com/scala/bug/issues/11978)
