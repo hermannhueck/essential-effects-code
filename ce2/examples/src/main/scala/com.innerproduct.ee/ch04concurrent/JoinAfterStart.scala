@@ -1,4 +1,4 @@
-package com.innerproduct.ee.concurrent
+package com.innerproduct.ee.ch04concurrent
 
 import cats.effect._
 import com.innerproduct.ee.debug._

@@ -1,4 +1,4 @@
-package com.innerproduct.ee.control
+package com.innerproduct.ee.ch04concurrent
 
 import cats.effect._
 import cats.effect.implicits._
