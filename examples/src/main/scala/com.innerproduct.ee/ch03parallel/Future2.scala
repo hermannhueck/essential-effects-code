@@ -1,4 +1,4 @@
-package com.innerproduct.ee.parallel
+package com.innerproduct.ee.ch03parallel
 
 import cats.implicits._
 import scala.concurrent._

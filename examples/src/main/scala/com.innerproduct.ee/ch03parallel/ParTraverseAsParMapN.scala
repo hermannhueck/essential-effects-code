@@ -1,4 +1,4 @@
-package com.innerproduct.ee.parallel
+package com.innerproduct.ee.ch03parallel
 
 import cats.effect._
 import cats.implicits._

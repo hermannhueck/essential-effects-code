@@ -1,18 +1,18 @@
-package com.innerproduct.ee.parallel
+package com.innerproduct.ee.ch03parallel
 
 import cats.effect._
 import cats.implicits._
 import com.innerproduct.ee.debug._
 
-object DebugExample extends IOApp {
+object ParMapN extends IOApp {
   def run(args: List[String]): IO[ExitCode] =
-    seq.as(ExitCode.Success)
+    par.as(ExitCode.Success)
 
   val hello = IO("hello").debug() // <1>
   val world = IO("world").debug() // <1>
 
-  val seq =
+  val par =
     (hello, world)
-      .mapN((h, w) => s"$h $w")
-      .debug() // <1>
+      .parMapN((h, w) => s"$h $w") // <2>
+      .debug() // <3>
 }
