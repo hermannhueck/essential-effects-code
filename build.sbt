@@ -25,14 +25,14 @@ val commonSettings =
     // scalacOptions provided by sbt-tpolecat plugin
   )
 
-// lazy val ce3examples = (project in file("ce3/examples"))
-//   .settings(commonSettings)
-//   .settings(
-//     libraryDependencies ++= Seq(
-//       "org.typelevel" %% "cats-effect" % CE3Version,
-//       "org.typelevel" %% "cats-effect-laws" % CE3Version % Test
-//     )
-//   )
+lazy val ce3examples = (project in file("ce3/examples"))
+  .settings(commonSettings)
+  .settings(
+    libraryDependencies ++= Seq(
+      "org.typelevel" %% "cats-effect" % CE3Version,
+      "org.typelevel" %% "cats-effect-laws" % CE3Version % Test
+    )
+  )
 
 lazy val ce2examples = (project in file("ce2/examples"))
   .settings(commonSettings)
