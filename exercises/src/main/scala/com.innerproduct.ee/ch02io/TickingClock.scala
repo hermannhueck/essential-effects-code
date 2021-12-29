@@ -1,4 +1,4 @@
-package com.innerproduct.ee.io
+package com.innerproduct.ee.ch02io
 
 import cats.effect._
 

@@ -1,4 +1,4 @@
-package com.innerproduct.ee.effects
+package com.innerproduct.ee.ch01effects
 
 import scala.concurrent.duration.FiniteDuration
 

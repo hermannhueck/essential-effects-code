@@ -1,4 +1,4 @@
-package com.innerproduct.ee.effects
+package com.innerproduct.ee.ch01effects
 
 case class MyIO[A](unsafeRun: () => A) {
   def map[B](f: A => B): MyIO[B] =
