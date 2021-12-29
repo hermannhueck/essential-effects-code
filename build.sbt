@@ -6,11 +6,12 @@ ThisBuild / turbo := true                  // default: false
 ThisBuild / includePluginResolvers := true // default: false
 Global / onChangedBuildSource := ReloadOnSourceChanges
 
-val CatsEffectVersion = "2.5.4"
+val CE2Version = "2.5.4"
+val CE3Version = "3.1.1"
 val CatsTaglessVersion = "0.14.0"
 val CirceVersion = "0.14.1"
 val Http4sVersion = "0.22.8"
-val LogbackVersion = "1.2.7"
+val LogbackVersion = "1.2.10"
 val MunitVersion = "0.7.29"
 
 val commonSettings =
@@ -24,40 +25,49 @@ val commonSettings =
     // scalacOptions provided by sbt-tpolecat plugin
   )
 
-lazy val examples = (project in file("examples"))
+// lazy val ce3examples = (project in file("ce3/examples"))
+//   .settings(commonSettings)
+//   .settings(
+//     libraryDependencies ++= Seq(
+//       "org.typelevel" %% "cats-effect" % CE3Version,
+//       "org.typelevel" %% "cats-effect-laws" % CE3Version % Test
+//     )
+//   )
+
+lazy val ce2examples = (project in file("ce2/examples"))
   .settings(commonSettings)
   .settings(
     libraryDependencies ++= Seq(
-      "org.typelevel" %% "cats-effect" % CatsEffectVersion,
-      "org.typelevel" %% "cats-effect-laws" % CatsEffectVersion % Test
+      "org.typelevel" %% "cats-effect" % CE2Version,
+      "org.typelevel" %% "cats-effect-laws" % CE2Version % Test
     )
   )
 
-lazy val exercises = (project in file("exercises"))
-  .dependsOn(examples)
+lazy val ce2exercises = (project in file("ce2/exercises"))
+  .dependsOn(ce2examples)
   .settings(commonSettings)
   .settings(
     libraryDependencies ++= Seq(
-      "org.typelevel" %% "cats-effect" % CatsEffectVersion,
-      "org.typelevel" %% "cats-effect-laws" % CatsEffectVersion % Test
+      "org.typelevel" %% "cats-effect" % CE2Version,
+      "org.typelevel" %% "cats-effect-laws" % CE2Version % Test
     ),
     // remove fatal warnings since exercises have unused and dead code blocks
     scalacOptions ++= Seq( "-Wdead-code:false" ),
     scalacOptions --= Seq( "-Xfatal-warnings" )
   )
 
-lazy val solutions = (project in file("solutions"))
-  .dependsOn(examples)
+lazy val ce2solutions = (project in file("ce2/solutions"))
+  .dependsOn(ce2examples)
   .settings(commonSettings)
   .settings(
     libraryDependencies ++= Seq(
-      "org.typelevel" %% "cats-effect" % CatsEffectVersion,
-      "org.typelevel" %% "cats-effect-laws" % CatsEffectVersion % Test
+      "org.typelevel" %% "cats-effect" % CE2Version,
+      "org.typelevel" %% "cats-effect-laws" % CE2Version % Test
     )
   )
 
-lazy val petstore = (project in file("case-studies") / "petstore")
-  .dependsOn(examples % "test->test;compile->compile")
+lazy val ce2petstore = (project in file("ce2/case-studies") / "petstore")
+  .dependsOn(ce2examples % "test->test;compile->compile")
   .settings(commonSettings)
   .settings(
     // -Ymacro-annotations in 2.13.2 breaks -Wunused-imports, so downgrade for petstore (https://github.com/scala/bug/issues/11978)
