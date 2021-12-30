@@ -1,4 +1,4 @@
-package com.innerproduct.ee.contexts
+package com.innerproduct.ee.ch05contexts
 
 import cats.effect._
 import com.innerproduct.ee.debug._
