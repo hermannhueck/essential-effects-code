@@ -1,4 +1,4 @@
-package com.innerproduct.ee.asynchrony
+package com.innerproduct.ee.ch06async
 
 import cats.effect._
 import com.innerproduct.ee.debug._
