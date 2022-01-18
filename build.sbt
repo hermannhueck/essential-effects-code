@@ -44,29 +44,6 @@ lazy val ce2examples = (project in file("ce2/examples"))
     )
   )
 
-lazy val ce2exercises = (project in file("ce2/exercises"))
-  .dependsOn(ce2examples)
-  .settings(commonSettings)
-  .settings(
-    libraryDependencies ++= Seq(
-      "org.typelevel" %% "cats-effect" % CE2Version,
-      "org.typelevel" %% "cats-effect-laws" % CE2Version % Test
-    ),
-    // remove fatal warnings since exercises have unused and dead code blocks
-    scalacOptions ++= Seq( "-Wdead-code:false" ),
-    scalacOptions --= Seq( "-Xfatal-warnings" )
-  )
-
-lazy val ce2solutions = (project in file("ce2/solutions"))
-  .dependsOn(ce2examples)
-  .settings(commonSettings)
-  .settings(
-    libraryDependencies ++= Seq(
-      "org.typelevel" %% "cats-effect" % CE2Version,
-      "org.typelevel" %% "cats-effect-laws" % CE2Version % Test
-    )
-  )
-
 lazy val ce2petstore = (project in file("ce2/case-studies") / "petstore")
   .dependsOn(ce2examples % "test->test;compile->compile")
   .settings(commonSettings)
