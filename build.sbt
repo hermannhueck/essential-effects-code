@@ -30,7 +30,8 @@ lazy val ce3examples = (project in file("ce3/examples"))
   .settings(
     libraryDependencies ++= Seq(
       "org.typelevel" %% "cats-effect" % CE3Version,
-      "org.typelevel" %% "cats-effect-laws" % CE3Version % Test
+      "org.typelevel" %% "cats-effect-laws" % CE3Version % Test,
+      "org.typelevel" %% "cats-effect-kernel-testkit" % CE3Version % Test
     )
   )
 

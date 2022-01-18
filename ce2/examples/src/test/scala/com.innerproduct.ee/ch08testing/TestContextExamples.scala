@@ -1,4 +1,4 @@
-package com.innerproduct.ee.testing
+package com.innerproduct.ee.ch08testing
 
 import cats.effect._
 import cats.effect.laws.util.TestContext
@@ -14,6 +14,7 @@ trait EffectTesting {
 }
 
 class TestContextExamples extends FunSuite with EffectTesting {
+  
   test("IO.sleep") {
     // tag::sleep[]
     val timeoutError = new TimeoutException
