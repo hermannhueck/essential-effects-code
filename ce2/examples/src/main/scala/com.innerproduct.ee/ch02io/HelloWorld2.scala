@@ -1,8 +1,8 @@
-package com.innerproduct.ee.apps
+package com.innerproduct.ee.ch01effects
 
 import cats.effect._
 
-object HelloWorld extends IOApp {
+object HelloWorld2 extends IOApp {
   
   def run(args: List[String]): IO[ExitCode] =
     helloWorld.as(ExitCode.Success)
