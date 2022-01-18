@@ -1,4 +1,4 @@
-package com.innerproduct.ee.resources
+package com.innerproduct.ee.ch07resources
 
 import cats.effect._
 import com.innerproduct.ee.debug._
@@ -30,30 +30,30 @@ object EarlyRelease extends IOApp {
     )(source => IO(s"< closing Source to config").debug() *> IO(source.close))
 
   val config = "exampleConnectURL"
-}
 
-case class Config(connectURL: String)
+  case class Config(connectURL: String)
 
-object Config {
-  def fromSource(source: Source): IO[Config] =
-    for {
-      config <- IO(Config(source.getLines().next()))
-      _ <- IO(s"read $config").debug()
-    } yield config
-}
+  object Config {
+    def fromSource(source: Source): IO[Config] =
+      for {
+        config <- IO(Config(source.getLines().next()))
+        _ <- IO(s"read $config").debug()
+      } yield config
+  }
 
-trait DbConnection {
-  def query(sql: String): IO[String] // Why not!?
-}
+  trait DbConnection {
+    def query(sql: String): IO[String] // Why not!?
+  }
 
-object DbConnection {
-  def make(connectURL: String): Resource[IO, DbConnection] =
-    Resource.make(
-      IO(s"> opening Connection to $connectURL").debug() *> IO(
-        new DbConnection {
-          def query(sql: String): IO[String] =
-            IO(s"""(results for SQL "$sql")""")
-        }
-      )
-    )(_ => IO(s"< closing Connection to $connectURL").debug().void)
+  object DbConnection {
+    def make(connectURL: String): Resource[IO, DbConnection] =
+      Resource.make(
+        IO(s"> opening Connection to $connectURL").debug() *> IO(
+          new DbConnection {
+            def query(sql: String): IO[String] =
+              IO(s"""(results for SQL "$sql")""")
+          }
+        )
+      )(_ => IO(s"< closing Connection to $connectURL").debug().void)
+  }
 }

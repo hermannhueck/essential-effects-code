@@ -1,4 +1,4 @@
-package com.innerproduct.ee.resources
+package com.innerproduct.ee.ch07resources
 
 import cats.effect._
 import com.innerproduct.ee.debug._
