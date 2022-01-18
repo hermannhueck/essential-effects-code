@@ -1,4 +1,4 @@
-package com.innerproduct.ee.coordination
+package com.innerproduct.ee.ch09coordination
 
 import cats.effect._
 import cats.implicits._

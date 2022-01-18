@@ -1,4 +1,4 @@
-package com.innerproduct.ee.coordination
+package com.innerproduct.ee.ch09coordination
 
 import cats.effect._
 import cats.effect.concurrent._
@@ -6,7 +6,7 @@ import cats.implicits._
 import com.innerproduct.ee.debug._
 import scala.concurrent.duration._
 
-object IsThirteen extends IOApp {
+object IsThirteen2 extends IOApp {
   def run(args: List[String]): IO[ExitCode] =
     for {
       ticks <- Ref[IO].of(0L)
@@ -25,7 +25,6 @@ object IsThirteen extends IOApp {
       _ <- IO.sleep(1.second)
       _ <- IO(System.currentTimeMillis).debug()
       count <- ticks.updateAndGet(_ + 1)
-      _ <- if (count >= 13) is13.complete(()) else IO.unit // <4>
-      _ <- tickingClock(ticks, is13)
+      _ <- if (count >= 13) is13.complete(()) else tickingClock(ticks, is13)
     } yield ()
 }

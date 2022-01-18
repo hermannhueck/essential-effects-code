@@ -1,4 +1,4 @@
-package com.innerproduct.ee.coordination
+package com.innerproduct.ee.ch09coordination
 
 import cats.effect._
 import cats.effect.concurrent._
@@ -27,7 +27,7 @@ object CountdownLatch {
           case Outstanding(n, whenDone) =>
             Outstanding(n - 1, whenDone) -> IO.unit
           case Done() => Done() -> IO.unit
-        }.flatten
+        }.flatten.uncancelable
     }
 
   sealed trait State

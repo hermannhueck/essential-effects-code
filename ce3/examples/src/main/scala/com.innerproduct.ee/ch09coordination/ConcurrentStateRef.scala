@@ -1,17 +1,12 @@
-package com.innerproduct.ee.coordination
+package com.innerproduct.ee.ch09coordination
 
 import cats.effect._
-import cats.effect.concurrent.Ref // <1>
+// import cats.effect.concurrent.Ref // <1>
 import cats.implicits._
 import com.innerproduct.ee.debug._
 import scala.concurrent.duration._
 
-object ConcurrentStateRef extends IOApp {
-  def run(args: List[String]): IO[ExitCode] =
-    for {
-      ticks <- Ref[IO].of(0L) // <2>
-      _ <- (tickingClock(ticks), printTicks(ticks)).parTupled // <3>
-    } yield ExitCode.Success
+object ConcurrentStateRef extends IOApp.Simple {
 
   def tickingClock(ticks: Ref[IO, Long]): IO[Unit] =
     for {
@@ -27,5 +22,11 @@ object ConcurrentStateRef extends IOApp {
       n <- ticks.get // <5>
       _ <- IO(s"TICKS: $n").debug()
       _ <- printTicks(ticks)
+    } yield ()
+
+  val run: IO[Unit] =
+    for {
+      ticks <- Ref[IO].of(0L) // <2>
+      _ <- (tickingClock(ticks), printTicks(ticks)).parTupled // <3>
     } yield ()
 }
