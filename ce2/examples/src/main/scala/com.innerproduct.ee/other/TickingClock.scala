@@ -1,4 +1,4 @@
-package com.innerproduct.ee.apps
+package com.innerproduct.ee.other
 
 import cats.effect._
 import cats.implicits._
