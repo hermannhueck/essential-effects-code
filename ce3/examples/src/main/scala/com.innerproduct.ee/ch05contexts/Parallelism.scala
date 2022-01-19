@@ -12,7 +12,7 @@ object Parallelism extends IOApp.Simple {
       _ <- tasks.debug()
     } yield ()
 
-  val numCpus = Runtime.getRuntime().availableProcessors() // <1>
-  val tasks = List.range(0, numCpus * 2).parTraverse(task) // <2>
-  def task(i: Int): IO[Int] = IO(i).debug() // <3>
+  val numCpus               = Runtime.getRuntime().availableProcessors()   // <1>
+  val tasks                 = List.range(0, numCpus * 2).parTraverse(task) // <2>
+  def task(i: Int): IO[Int] = IO(i).debug()                                // <3>
 }

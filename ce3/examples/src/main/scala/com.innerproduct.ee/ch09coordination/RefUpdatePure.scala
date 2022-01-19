@@ -17,6 +17,6 @@ object RefUpdatePure extends IOApp.Simple {
   val run: IO[Unit] =
     for {
       ref <- Ref[IO].of(0)
-      _ <- List(1, 2, 3).parTraverse(task(_, ref)) // <1>
+      _   <- List(1, 2, 3).parTraverse(task(_, ref)) // <1>
     } yield ()
 }

@@ -17,7 +17,8 @@ object BasicResourceComposed extends IOApp.Simple {
     )(_ => IO("< releasing intResource").debug().void)
 
   val run: IO[Unit] =
-    (stringResource, intResource).tupled // <2>
+    (stringResource, intResource)
+      .tupled // <2>
       .use { case (s, i) => // <2>
         IO(s"$s is so cool!").debug() *>
           IO(s"$i is also cool!").debug()

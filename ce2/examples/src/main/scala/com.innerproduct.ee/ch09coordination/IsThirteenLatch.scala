@@ -9,7 +9,7 @@ object IsThirteenLatch extends IOApp {
   def run(args: List[String]): IO[ExitCode] =
     for {
       latch <- CountdownLatch(13)
-      _ <- (beeper(latch), tickingClock(latch)).parTupled
+      _     <- (beeper(latch), tickingClock(latch)).parTupled
     } yield ExitCode.Success
 
   def beeper(latch: CountdownLatch) =

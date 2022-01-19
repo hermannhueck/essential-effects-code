@@ -12,7 +12,7 @@ object EarlyRelease extends IOApp.Simple {
     def fromSource(source: Source): IO[Config] =
       for {
         config <- IO(Config(source.getLines().next()))
-        _ <- IO(s"read $config").debug()
+        _      <- IO(s"read $config").debug()
       } yield config
   }
 
@@ -37,7 +37,7 @@ object EarlyRelease extends IOApp.Simple {
   val dbConnectionResource: Resource[IO, DbConnection] =
     for {
       config <- configResource
-      conn <- DbConnection.make(config.connectURL)
+      conn   <- DbConnection.make(config.connectURL)
     } yield conn
 
   lazy val sourceResource: Resource[IO, Source] =
@@ -52,9 +52,7 @@ object EarlyRelease extends IOApp.Simple {
     } yield config
 
   val run: IO[Unit] =
-    dbConnectionResource
-      .use { conn =>
-        conn.query("SELECT * FROM users WHERE id = 12").debug()
-      }
-      .void
+    dbConnectionResource.use { conn =>
+      conn.query("SELECT * FROM users WHERE id = 12").debug()
+    }.void
 }

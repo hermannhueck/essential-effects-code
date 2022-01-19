@@ -15,8 +15,8 @@ object Cancel extends IOApp.Simple {
         task
           .onCancel(IO("i was cancelled").debug().void) // <1>
           .start
-      _ <- IO("pre-cancel").debug()
-      _ <- fiber.cancel // <2>
-      _ <- IO("canceled").debug()
+      _     <- IO("pre-cancel").debug()
+      _     <- fiber.cancel // <2>
+      _     <- IO("canceled").debug()
     } yield ()
 }

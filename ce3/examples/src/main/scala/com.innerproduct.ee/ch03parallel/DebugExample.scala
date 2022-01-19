@@ -5,7 +5,7 @@ import cats.implicits._
 import com.innerproduct.ee.debug._
 
 object DebugExample extends IOApp {
-  
+
   def run(args: List[String]): IO[ExitCode] =
     seq.as(ExitCode.Success)
 

@@ -17,12 +17,12 @@ trait EffectTesting {
 }
 
 class TestContextExamples extends FunSuite with EffectTesting {
-  
+
   test("IO.sleep") {
     // tag::sleep[]
     val timeoutError = new TimeoutException
     @annotation.nowarn("msg=never used")
-    val timeout =
+    val timeout      =
       IO.sleep(10.seconds) *> IO.raiseError[Int](timeoutError) // <1>
     // val f = timeout.unsafeToFuture() // <2>
 

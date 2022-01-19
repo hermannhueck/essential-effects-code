@@ -26,7 +26,7 @@ object ConcurrentStateRef extends IOApp.Simple {
 
   val run: IO[Unit] =
     for {
-      ticks <- Ref[IO].of(0L) // <2>
-      _ <- (tickingClock(ticks), printTicks(ticks)).parTupled // <3>
+      ticks <- Ref[IO].of(0L)                                     // <2>
+      _     <- (tickingClock(ticks), printTicks(ticks)).parTupled // <3>
     } yield ()
 }

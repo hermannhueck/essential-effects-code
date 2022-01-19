@@ -34,7 +34,7 @@ class PetServiceTests extends ScalaCheckSuite with IOLawsForMunitScalaCheck {
 
   val genPet =
     for {
-      name <- Gen.alphaStr
+      name     <- Gen.alphaStr
       category <- Gen.oneOf("cat", "dog", "newt")
     } yield Pet(name, category)
 }
@@ -49,9 +49,8 @@ object PetServiceLaws {
   // (ps.give(pet) >> ps.give(pet) >>= ps.find) <-> (ps.give(pet) >>= ps.find)
 }
 
-/** "Laws" in cats are usually expressed with the [[cats.laws.IsEq]] class,
-  * which can be written with the infix operator `<->` to mean "these two things
-  * are equal".
+/** "Laws" in cats are usually expressed with the [[cats.laws.IsEq]] class, which can be written with the infix operator
+  * `<->` to mean "these two things are equal".
   *
   * This mixin lets you use `<->` to equate two `IO` values.
   */

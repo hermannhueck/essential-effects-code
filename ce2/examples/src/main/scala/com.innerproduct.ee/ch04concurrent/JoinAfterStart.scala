@@ -9,9 +9,9 @@ object JoinAfterStart extends IOApp {
   def run(args: List[String]): IO[ExitCode] =
     for {
       fiber <- task.start
-      _ <- IO("pre-join").debug()
-      _ <- fiber.join.debug() // <2>
-      _ <- IO("post-join").debug()
+      _     <- IO("pre-join").debug()
+      _     <- fiber.join.debug() // <2>
+      _     <- IO("post-join").debug()
     } yield ExitCode.Success
 
   val task: IO[String] =

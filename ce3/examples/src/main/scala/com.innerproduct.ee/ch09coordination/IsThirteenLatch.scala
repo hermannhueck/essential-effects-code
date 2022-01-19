@@ -10,7 +10,7 @@ object IsThirteenLatch extends IOApp.Simple {
   val run: IO[Unit] =
     for {
       latch <- CountdownLatch(13)
-      _ <- (beeper(latch), tickingClock(latch)).parTupled
+      _     <- (beeper(latch), tickingClock(latch)).parTupled
     } yield ()
 
   def beeper(latch: CountdownLatch) =

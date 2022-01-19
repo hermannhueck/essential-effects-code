@@ -12,8 +12,8 @@ object ParMapNSimple extends IOApp.Simple {
   val par =
     (hello, world)
       .parMapN((h, w) => s"$h $w") // <2>
-      .debug() // <3>
-  
+      .debug()                     // <3>
+
   val run: IO[Unit] =
     par.void
 }

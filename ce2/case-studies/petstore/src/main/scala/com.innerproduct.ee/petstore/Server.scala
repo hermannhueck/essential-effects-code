@@ -22,7 +22,7 @@ object Server extends IOApp {
   def runR[F[_]: ConcurrentEffect: ContextShift: Timer]: Resource[F, Unit] =
     for {
       rs <- routes
-      _ <- server(Router("/" -> rs).orNotFound)
+      _  <- server(Router("/" -> rs).orNotFound)
     } yield ()
 
   def server[F[_]: ConcurrentEffect: Timer](
@@ -35,13 +35,13 @@ object Server extends IOApp {
 
   def routes[F[_]: Sync: Timer]: Resource[F, HttpRoutes[F]] =
     for {
-      pets <- ServerResources
-        .pets[F]
-        .map(addExtraLatency(100.millis))
+      pets      <- ServerResources
+                     .pets[F]
+                     .map(addExtraLatency(100.millis))
       orderRepo <- ServerResources.orderRepo[F]
-      orders = addExtraLatency(100.millis)(
-        ServerResources.orders(pets, orderRepo)
-      )
+      orders     = addExtraLatency(100.millis)(
+                     ServerResources.orders(pets, orderRepo)
+                   )
     } yield Routes.pets[F](pets) <+> Routes.orders[F](orders)
 
   def addExtraLatency[Alg[_[_]]: FunctorK, F[_]: Monad: Timer](

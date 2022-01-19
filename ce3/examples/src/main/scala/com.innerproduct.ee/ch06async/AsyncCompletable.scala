@@ -16,7 +16,7 @@ object AsyncCompletable extends IOApp.Simple {
         val handler: (A, Throwable) => Unit = {
           case (a, null) => cb(Right(a))
           case (null, t) => cb(Left(t))
-          case (a, t) =>
+          case (a, t)    =>
             sys.error(s"CompletableFuture handler should always have one null, got: $a, $t")
         }
 

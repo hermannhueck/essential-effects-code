@@ -11,8 +11,8 @@ object Timing extends App {
   def time[A](action: MyIO[A]): MyIO[(FiniteDuration, A)] =
     for { // <2>
       start <- clock
-      a <- action
-      end <- clock
+      a     <- action
+      end   <- clock
     } yield (FiniteDuration(end - start, TimeUnit.MILLISECONDS), a)
 
   val timedHello = Timing.time(Printing.hello)

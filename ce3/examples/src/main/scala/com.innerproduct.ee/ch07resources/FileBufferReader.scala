@@ -4,7 +4,7 @@ import cats.effect._
 import java.io.RandomAccessFile
 
 class FileBufferReader private (in: RandomAccessFile) { // <1>
-  
+
   def readBuffer(offset: Long): IO[(Array[Byte], Int)] = // <2>
     IO {
       in.seek(offset)

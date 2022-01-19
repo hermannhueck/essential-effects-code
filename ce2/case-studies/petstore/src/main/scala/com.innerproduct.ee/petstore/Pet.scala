@@ -22,20 +22,20 @@ object Pet {
       if (!str.isEmpty) scala.util.Try(Id(str.toLong)).toOption
       else None
 
-    implicit val show: Show[Id] = Show.fromToString
-    implicit val decoder: Decoder[Id] = Decoder[Long].map(Id.apply)
-    implicit val encoder: Encoder[Id] = Encoder[Long].contramap(_.toLong)
-    implicit def entityDecoder[F[_]: Sync]: EntityDecoder[F, Id] =
+    implicit val show: Show[Id]                                         = Show.fromToString
+    implicit val decoder: Decoder[Id]                                   = Decoder[Long].map(Id.apply)
+    implicit val encoder: Encoder[Id]                                   = Encoder[Long].contramap(_.toLong)
+    implicit def entityDecoder[F[_]: Sync]: EntityDecoder[F, Id]        =
       jsonOf[F, Long].map(Id.apply)
     @annotation.nowarn("msg=never used")
     implicit def entityEncoder[F[_]: Applicative]: EntityEncoder[F, Id] =
       jsonEncoderOf[F, Long].contramap(_.toLong)
   }
 
-  implicit val decoder: Decoder[Pet] = deriveDecoder[Pet]
-  implicit def entityDecoder[F[_]: Sync]: EntityDecoder[F, Pet] =
+  implicit val decoder: Decoder[Pet]                                   = deriveDecoder[Pet]
+  implicit def entityDecoder[F[_]: Sync]: EntityDecoder[F, Pet]        =
     jsonOf
-  implicit val encoder: Encoder[Pet] = deriveEncoder[Pet]
+  implicit val encoder: Encoder[Pet]                                   = deriveEncoder[Pet]
   @annotation.nowarn("msg=never used")
   implicit def entityEncoder[F[_]: Applicative]: EntityEncoder[F, Pet] =
     jsonEncoderOf

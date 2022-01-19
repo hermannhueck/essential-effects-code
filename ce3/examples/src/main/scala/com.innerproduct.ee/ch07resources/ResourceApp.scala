@@ -27,8 +27,7 @@ object ResourceApp extends IOApp.Simple {
       .use { // <3>
         case (a, b, c) =>
           applicationLogic(a, b, c) // <2>
-      }
-      .void
+      }.void
 }
 
 trait DependencyA

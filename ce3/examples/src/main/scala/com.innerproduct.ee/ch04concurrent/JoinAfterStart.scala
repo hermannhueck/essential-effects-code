@@ -12,8 +12,8 @@ object JoinAfterStart extends IOApp.Simple {
   val run: IO[Unit] =
     for {
       fiber <- task.start
-      _ <- IO("pre-join").debug()
-      _ <- fiber.join.debug() // <2>
-      _ <- IO("post-join").debug()
+      _     <- IO("pre-join").debug()
+      _     <- fiber.join.debug() // <2>
+      _     <- IO("post-join").debug()
     } yield ()
 }

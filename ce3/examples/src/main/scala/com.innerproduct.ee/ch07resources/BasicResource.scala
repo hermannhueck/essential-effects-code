@@ -11,8 +11,7 @@ object BasicResource extends IOApp.Simple {
     )(_ => IO("< releasing stringResource").debug().void)
 
   val run: IO[Unit] =
-    stringResource
-      .use { s => // <2>
-        IO(s"$s is so cool!").debug()
-      }.void
+    stringResource.use { s => // <2>
+      IO(s"$s is so cool!").debug()
+    }.void
 }

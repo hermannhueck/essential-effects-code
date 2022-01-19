@@ -14,15 +14,15 @@ object Timeout extends IOApp.Simple {
         IO(s"$name: done").debug()
     ).onCancel(IO(s"$name: cancelled").debug().void).void
 
-  val task: IO[Unit] = annotatedSleep("   task", 100.millis) // <6>
+  val task: IO[Unit]    = annotatedSleep("   task", 100.millis) // <6>
   val timeout: IO[Unit] = annotatedSleep("timeout", 500.millis)
 
   val run: IO[Unit] =
     for {
       done <- IO.race(task, timeout) // <1>
-      _ <- done match { // <2>
-        case Left(_)  => IO("   task: won").debug() // <3>
-        case Right(_) => IO("timeout: won").debug() // <4>
-      }
+      _    <- done match {           // <2>
+                case Left(_)  => IO("   task: won").debug() // <3>
+                case Right(_) => IO("timeout: won").debug() // <4>
+              }
     } yield ()
 }

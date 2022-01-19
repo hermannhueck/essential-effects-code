@@ -9,8 +9,8 @@ object ResourceBackgroundTask extends IOApp {
   def run(args: List[String]): IO[ExitCode] =
     for {
       _ <- backgroundTask.use { _ =>
-        IO.sleep(1000.millis) *> IO("backgroundTask is so cool!").debug() // <1>
-      }
+             IO.sleep(1000.millis) *> IO("backgroundTask is so cool!").debug() // <1>
+           }
       _ <- IO("done!").debug()
     } yield ExitCode.Success
 
@@ -20,8 +20,8 @@ object ResourceBackgroundTask extends IOApp {
 
     Resource
       .make(IO("> forking backgroundTask").debug() *> loop.start)( // <3>
-        IO("< canceling backgroundTask").debug().void *> _.cancel // <4>
+        IO("< canceling backgroundTask").debug().void *> _.cancel  // <4>
       )
-      .void // <5>
+      .void                                                        // <5>
   }
 }

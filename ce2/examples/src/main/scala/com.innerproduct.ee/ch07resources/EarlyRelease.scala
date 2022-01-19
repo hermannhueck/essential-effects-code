@@ -15,7 +15,7 @@ object EarlyRelease extends IOApp {
   val dbConnectionResource: Resource[IO, DbConnection] =
     for {
       config <- configResource
-      conn <- DbConnection.make(config.connectURL)
+      conn   <- DbConnection.make(config.connectURL)
     } yield conn
 
   lazy val configResource: Resource[IO, Config] = // <1>
@@ -37,7 +37,7 @@ object EarlyRelease extends IOApp {
     def fromSource(source: Source): IO[Config] =
       for {
         config <- IO(Config(source.getLines().next()))
-        _ <- IO(s"read $config").debug()
+        _      <- IO(s"read $config").debug()
       } yield config
   }
 

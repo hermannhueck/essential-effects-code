@@ -13,7 +13,7 @@ object ParTupledErrors extends IOApp {
       e3.attempt.debug() *>
       IO.pure(ExitCode.Success)
 
-  val ok = IO("hi").debug()
+  val ok  = IO("hi").debug()
   val ko1 = IO.raiseError[String](new RuntimeException("oh!")).debug()
   val ko2 = IO.raiseError[String](new RuntimeException("noes!")).debug()
 

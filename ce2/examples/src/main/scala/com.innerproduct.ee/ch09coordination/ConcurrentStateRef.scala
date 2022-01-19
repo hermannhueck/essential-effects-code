@@ -9,8 +9,8 @@ import scala.concurrent.duration._
 object ConcurrentStateRef extends IOApp {
   def run(args: List[String]): IO[ExitCode] =
     for {
-      ticks <- Ref[IO].of(0L) // <2>
-      _ <- (tickingClock(ticks), printTicks(ticks)).parTupled // <3>
+      ticks <- Ref[IO].of(0L)                                     // <2>
+      _     <- (tickingClock(ticks), printTicks(ticks)).parTupled // <3>
     } yield ExitCode.Success
 
   def tickingClock(ticks: Ref[IO, Long]): IO[Unit] =

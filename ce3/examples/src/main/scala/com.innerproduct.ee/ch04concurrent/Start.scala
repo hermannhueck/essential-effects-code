@@ -10,7 +10,7 @@ object Start extends IOApp.Simple {
 
   val run: IO[Unit] =
     for {
-      _ <- task.start // <1>
+      _ <- task.start                     // <1>
       _ <- IO("task was started").debug() // <2>
     } yield ()
 }

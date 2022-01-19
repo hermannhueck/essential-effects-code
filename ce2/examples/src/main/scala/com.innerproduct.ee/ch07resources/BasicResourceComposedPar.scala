@@ -6,7 +6,8 @@ import com.innerproduct.ee.debug._
 
 object BasicResourceComposedPar extends IOApp {
   def run(args: List[String]): IO[ExitCode] =
-    (stringResource, intResource).parTupled // <2>
+    (stringResource, intResource)
+      .parTupled // <2>
       .use { case (s, i) => // <2>
         IO(s"$s is so cool!").debug() *>
           IO(s"$i is also cool!").debug()

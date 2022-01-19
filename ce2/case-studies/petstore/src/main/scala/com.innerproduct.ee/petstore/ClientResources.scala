@@ -17,7 +17,7 @@ object ClientResources {
         client.expectOption[Pet](
           Request[F](Method.GET, baseURI / "pets" / id.toLong.toString)
         )
-      def give(pet: Pet): F[Pet.Id] =
+      def give(pet: Pet): F[Pet.Id]        =
         client.expect[Pet.Id](
           Request[F](Method.POST, baseURI / "pets").withEntity(pet)
         )
@@ -39,9 +39,9 @@ object ClientResources {
         client.run(Request[F](Method.POST, baseURI / "orders" +? id)).use {
           case Successful(res) =>
             res.as[PetOrder.Id].map(_.asRight[PetOrder.Error])
-          case res => res.as[PetOrder.Error].map(_.asLeft[PetOrder.Id])
+          case res             => res.as[PetOrder.Error].map(_.asLeft[PetOrder.Id])
         }
-      def approve(id: PetOrder.Id): F[Either[PetOrder.Error, Unit]] =
+      def approve(id: PetOrder.Id): F[Either[PetOrder.Error, Unit]]            =
         EitherT(
           client
             .run(
@@ -53,12 +53,12 @@ object ClientResources {
             .use {
               case Successful(res) =>
                 res.as[Unit].map(_.asRight[PetOrder.Error])
-              case res => res.as[PetOrder.Error].map(_.asLeft[Unit])
+              case res             => res.as[PetOrder.Error].map(_.asLeft[Unit])
             }
         ).value
-      def deliver(id: PetOrder.Id): F[Either[PetOrder.Error, Unit]] = ???
-      def find(id: PetOrder.Id): F[Option[PetOrder]] = ???
-      def findByPetId(id: Pet.Id): F[Option[PetOrder]] = ???
-      def findByStatus(status: PetOrder.Status): F[List[PetOrder]] = ???
+      def deliver(id: PetOrder.Id): F[Either[PetOrder.Error, Unit]]            = ???
+      def find(id: PetOrder.Id): F[Option[PetOrder]]                           = ???
+      def findByPetId(id: Pet.Id): F[Option[PetOrder]]                         = ???
+      def findByStatus(status: PetOrder.Status): F[List[PetOrder]]             = ???
     }
 }

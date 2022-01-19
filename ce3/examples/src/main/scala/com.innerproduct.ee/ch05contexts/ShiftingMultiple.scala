@@ -11,8 +11,8 @@ object ShiftingMultiple extends IOApp.Simple {
     (ec("1"), ec("2")) match { // <1>
       case (ec1, ec2) =>
         for {
-          _ <- IO("one").debug() // <2>
-          _ <- IO("two").debug().evalOn(ec1) // <3>
+          _ <- IO("one").debug()               // <2>
+          _ <- IO("two").debug().evalOn(ec1)   // <3>
           _ <- IO("three").debug().evalOn(ec2) // <4>
         } yield ()
     }

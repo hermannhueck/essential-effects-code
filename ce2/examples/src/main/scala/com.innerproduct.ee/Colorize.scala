@@ -7,7 +7,7 @@ object Colorize {
   def reversed(a: Any): String =
     s"${Console.REVERSED}${apply(a)}"
 
-  private val colors = List(
+  private val colors    = List(
     Console.WHITE,
     Console.BLACK + Console.WHITE_B,
     Console.RED,

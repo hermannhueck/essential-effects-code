@@ -1,18 +1,18 @@
-ThisBuild / scalaVersion := "2.13.8"
-ThisBuild / organization := "com.innerproduct"
-ThisBuild / version := "0.0.1-SNAPSHOT"
-ThisBuild / fork := true
-ThisBuild / turbo := true                  // default: false
+ThisBuild / scalaVersion           := "2.13.8"
+ThisBuild / organization           := "com.innerproduct"
+ThisBuild / version                := "0.0.1-SNAPSHOT"
+ThisBuild / fork                   := true
+ThisBuild / turbo                  := true // default: false
 ThisBuild / includePluginResolvers := true // default: false
-Global / onChangedBuildSource := ReloadOnSourceChanges
+Global / onChangedBuildSource      := ReloadOnSourceChanges
 
-val CE2Version = "2.5.4"
-val CE3Version = "3.3.4"
+val CE2Version         = "2.5.4"
+val CE3Version         = "3.3.4"
 val CatsTaglessVersion = "0.14.0"
-val CirceVersion = "0.14.1"
-val Http4sVersion = "0.22.8"
-val LogbackVersion = "1.2.10"
-val MunitVersion = "0.7.29"
+val CirceVersion       = "0.14.1"
+val Http4sVersion      = "0.22.8"
+val LogbackVersion     = "1.2.10"
+val MunitVersion       = "0.7.29"
 
 val commonSettings =
   Seq(
@@ -21,7 +21,7 @@ val commonSettings =
     ),
     libraryDependencies ++= Seq(
       "org.scalameta" %% "munit" % MunitVersion % Test
-    ),
+    )
     // scalacOptions provided by sbt-tpolecat plugin
   )
 
@@ -29,8 +29,8 @@ lazy val ce3examples = (project in file("ce3/examples"))
   .settings(commonSettings)
   .settings(
     libraryDependencies ++= Seq(
-      "org.typelevel" %% "cats-effect" % CE3Version,
-      "org.typelevel" %% "cats-effect-laws" % CE3Version % Test,
+      "org.typelevel" %% "cats-effect"                % CE3Version,
+      "org.typelevel" %% "cats-effect-laws"           % CE3Version % Test,
       "org.typelevel" %% "cats-effect-kernel-testkit" % CE3Version % Test
     )
   )
@@ -39,7 +39,7 @@ lazy val ce2examples = (project in file("ce2/examples"))
   .settings(commonSettings)
   .settings(
     libraryDependencies ++= Seq(
-      "org.typelevel" %% "cats-effect" % CE2Version,
+      "org.typelevel" %% "cats-effect"      % CE2Version,
       "org.typelevel" %% "cats-effect-laws" % CE2Version % Test
     )
   )
@@ -51,13 +51,13 @@ lazy val ce2petstore = (project in file("ce2/case-studies") / "petstore")
     // -Ymacro-annotations in 2.13.2 breaks -Wunused-imports, so downgrade for petstore (https://github.com/scala/bug/issues/11978)
     scalacOptions += "-Ymacro-annotations", // required by cats-tagless-macros
     libraryDependencies ++= Seq(
-      "ch.qos.logback" % "logback-classic" % LogbackVersion,
-      "io.circe" %% "circe-generic" % CirceVersion,
-      "org.http4s" %% "http4s-blaze-server" % Http4sVersion,
-      "org.http4s" %% "http4s-blaze-client" % Http4sVersion,
-      "org.http4s" %% "http4s-circe" % Http4sVersion,
-      "org.http4s" %% "http4s-dsl" % Http4sVersion,
+      "ch.qos.logback" % "logback-classic"     % LogbackVersion,
+      "io.circe"      %% "circe-generic"       % CirceVersion,
+      "org.http4s"    %% "http4s-blaze-server" % Http4sVersion,
+      "org.http4s"    %% "http4s-blaze-client" % Http4sVersion,
+      "org.http4s"    %% "http4s-circe"        % Http4sVersion,
+      "org.http4s"    %% "http4s-dsl"          % Http4sVersion,
       "org.typelevel" %% "cats-tagless-macros" % CatsTaglessVersion,
-      "org.scalameta" %% "munit-scalacheck" % MunitVersion % Test
+      "org.scalameta" %% "munit-scalacheck"    % MunitVersion % Test
     )
   )

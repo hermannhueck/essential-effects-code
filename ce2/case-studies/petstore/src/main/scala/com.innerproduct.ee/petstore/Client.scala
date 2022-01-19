@@ -12,9 +12,9 @@ object Client extends IOApp {
   def run(args: List[String]): IO[ExitCode] =
     pets[IO].use { pets =>
       for {
-        id <- pets.give(scruffles)
+        id  <- pets.give(scruffles)
         pet <- pets.find(id)
-        _ <- IO(pet == Some(scruffles)).debug()
+        _   <- IO(pet == Some(scruffles)).debug()
       } yield ExitCode.Success
     }
 

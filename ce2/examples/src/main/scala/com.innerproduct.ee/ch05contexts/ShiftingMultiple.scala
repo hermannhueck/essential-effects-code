@@ -11,10 +11,10 @@ object ShiftingMultiple extends IOApp {
     (ec("1"), ec("2")) match { // <1>
       case (ec1, ec2) =>
         for {
-          _ <- IO("one").debug() // <2>
-          _ <- IO.shift(ec1) // <3>
-          _ <- IO("two").debug() // <3>
-          _ <- IO.shift(ec2) // <4>
+          _ <- IO("one").debug()   // <2>
+          _ <- IO.shift(ec1)       // <3>
+          _ <- IO("two").debug()   // <3>
+          _ <- IO.shift(ec2)       // <4>
           _ <- IO("three").debug() // <4>
         } yield ExitCode.Success
     }
