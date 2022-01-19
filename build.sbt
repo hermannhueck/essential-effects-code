@@ -13,6 +13,7 @@ val CirceVersion       = "0.14.1"
 val Http4sVersion      = "0.22.8"
 val LogbackVersion     = "1.2.10"
 val MunitVersion       = "0.7.29"
+val MunitCe3Version    = "1.0.7"
 
 val commonSettings =
   Seq(
@@ -29,9 +30,10 @@ lazy val ce3examples = (project in file("ce3/examples"))
   .settings(commonSettings)
   .settings(
     libraryDependencies ++= Seq(
-      "org.typelevel" %% "cats-effect"                % CE3Version,
-      "org.typelevel" %% "cats-effect-laws"           % CE3Version % Test,
-      "org.typelevel" %% "cats-effect-kernel-testkit" % CE3Version % Test
+      "org.typelevel" %% "cats-effect"         % CE3Version,
+      "org.typelevel" %% "cats-effect-laws"    % CE3Version      % Test,
+      "org.typelevel" %% "cats-effect-testkit" % CE3Version      % Test,
+      "org.typelevel" %% "munit-cats-effect-3" % MunitCe3Version % Test
     )
   )
 
