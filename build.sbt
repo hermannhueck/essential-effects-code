@@ -31,7 +31,6 @@ lazy val ce3examples = (project in file("ce3/examples"))
   .settings(
     libraryDependencies ++= Seq(
       "org.typelevel" %% "cats-effect"         % CE3Version,
-      "org.typelevel" %% "cats-effect-laws"    % CE3Version      % Test,
       "org.typelevel" %% "cats-effect-testkit" % CE3Version      % Test,
       "org.typelevel" %% "munit-cats-effect-3" % MunitCe3Version % Test
     )
