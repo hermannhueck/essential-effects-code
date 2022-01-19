@@ -1,4 +1,4 @@
-ThisBuild / scalaVersion := "2.13.7"
+ThisBuild / scalaVersion := "2.13.8"
 ThisBuild / organization := "com.innerproduct"
 ThisBuild / version := "0.0.1-SNAPSHOT"
 ThisBuild / fork := true
@@ -7,7 +7,7 @@ ThisBuild / includePluginResolvers := true // default: false
 Global / onChangedBuildSource := ReloadOnSourceChanges
 
 val CE2Version = "2.5.4"
-val CE3Version = "3.1.1"
+val CE3Version = "3.3.4"
 val CatsTaglessVersion = "0.14.0"
 val CirceVersion = "0.14.1"
 val Http4sVersion = "0.22.8"
@@ -49,7 +49,6 @@ lazy val ce2petstore = (project in file("ce2/case-studies") / "petstore")
   .settings(commonSettings)
   .settings(
     // -Ymacro-annotations in 2.13.2 breaks -Wunused-imports, so downgrade for petstore (https://github.com/scala/bug/issues/11978)
-    scalaVersion := "2.13.7",
     scalacOptions += "-Ymacro-annotations", // required by cats-tagless-macros
     libraryDependencies ++= Seq(
       "ch.qos.logback" % "logback-classic" % LogbackVersion,
