@@ -45,6 +45,15 @@ lazy val ce2examples = (project in file("ce2/examples"))
     )
   )
 
+lazy val jobscheduler = (project in file("ce2/case-studies") / "jobscheduler")
+  .settings(commonSettings)
+  .settings(
+    libraryDependencies ++= Seq(
+      "org.typelevel" %% "cats-effect"      % CE2Version,
+      "org.typelevel" %% "cats-effect-laws" % CE2Version % Test
+    )
+  )
+
 lazy val ce2petstore = (project in file("ce2/case-studies") / "petstore")
   .dependsOn(ce2examples % "test->test;compile->compile")
   .settings(commonSettings)
