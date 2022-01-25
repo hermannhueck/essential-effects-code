@@ -66,7 +66,7 @@ object Routes {
                         BadRequest().map(_.withEntity(e: PetOrder.Error))
                       case PetOrder.Error.OrderNotFound(_)           =>
                         InternalServerError() // shouldn't get this for this operation
-                      case PetOrder.Error.PetNotFound(_) => NotFound()
+                      case PetOrder.Error.PetNotFound(_)             => NotFound()
                     }
                     .map(Ok(_))
                     .merge
